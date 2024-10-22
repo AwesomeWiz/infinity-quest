@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Soul Stone</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Coda:wght@400;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <img class="logo" src="Images/infinity1.png">
+        <div class="stone-container">
+            <h1>Congratulations!</h1>
+            <img class="stone" src="Images/soul.png">
+            <h2>You've unlocked the <span style="color: rgba(255, 140, 0, 0.7);text-shadow: rgba(255, 140, 0, 0.7) 0px 0px 19px;" >Soul Stone</span> !</h2>
+        
+        <div class="cluecont">
+            <h3>Next Clue</h3>
+            <form id="passwordForm">
+                <input type="password" id="passwordInput" placeholder="Enter password" required>
+                <button type="submit">Submit</button>
+            </form>
+        
+            <p id="errorMessage" class="error" style="display: none;">Incorrect password, please try again.</p>
+        
+            <!-- Clue sections for each venue -->
+            <div id="powerClue" class="clue" style="display: none;">
+                " Where scholars ascend to deepen their quest,
+                A haven for minds pursuing their best.
+                Beyond the basics, where higher learning calls,
+                Find your next clue within these walls. "
+            </div>
+            <div id="timeClue" class="clue" style="display: none;">
+                " On campus I stand, under sky so wide,
+                Rows of stone where students confide.
+                Voices echo, stories unfold,
+                Under the sun, or stars of gold.
+                Gathered for speeches, or music so sweet,
+                Where am I, where crowds take their seat? "
+            </div>
+            <div id="realityClue" class="clue" style="display: none;">
+                " A cozy nook where the aroma flows.
+                Under wooden beams, you'll find your fill,
+                Of coffee and comfort, a perfect chill.
+                What am I, where friends often meet,
+                To grab a bite or a study seat? "
+            </div>
+            <div id="mindClue" class="clue" style="display: none;">
+                " A hub of dreams where creators unite,
+                Where minds ignite with entrepreneurial light.
+                A place where ideas take shape and grow,
+                Find your next step where bright futures glow. "
+            </div>
+            <div id="soulClue" class="clue" style="display: none;">
+                " I’m not a classroom, but I’m part of the day,
+                Helping students move without delay.
+                From lecture halls to dorms they flow.
+                What am I? "
+        </div>
+          <div id="spaceClue" class="clue" style="display: none;">
+            Latitude: 76°21'32.0"N<br>
+            Longitude: 9°59'39.1"E<br>
+            Hint :<br>
+            <video id="spaceVideo" src="Images/spiderman-backflip.mp4" autoplay loop muted></video>
+        </div>
+        <div id="gaunletClue1" class="clue" style="display: none;">
+            " I stand on guard, though battles are none,
+            In iron I’m cast, yet I never run.
+            At the heart of the campus, my duty is clear,
+            A symbol of strength, year after year "            
+    </div>
+    <div id="gaunletClueFull" class="clue" style="display: none;">
+        "  I stand on guard, though battles are none,
+        In iron I’m cast, yet I never run.
+        At the heart of the campus, my duty is clear,
+        A symbol of strength, year after year.<br>
+        Once I roared loud, now silent I stay,
+        Watching as students pass by each day.
+        A relic of power, from the past I came,
+        What am I, guarding in proud, quiet fame? "            
+</div>
+    </div>
+        
+            <script>
+               document.getElementById('passwordForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    var password = document.getElementById('passwordInput').value;
+ 
+    document.querySelectorAll('.clue').forEach(function(clue) {
+        clue.style.display = 'none';
+    });
+    document.getElementById('errorMessage').style.display = 'none';
+
+    
+    var passwordClueMap = {
+        'sunset': 'powerClue',   
+        'horizon': 'timeClue',     
+        'mercury': 'realityClue', 
+        'magic': 'mindClue',     
+        'carpet': 'spaceClue',
+        'shadow': 'gaunletClue1',
+        'highway': 'gaunletClueFull'    
+    };
+
+    if (passwordClueMap[password]) {
+        var clueElement = document.getElementById(passwordClueMap[password]);
+        clueElement.style.display = 'block';
+
+        if (passwordClueMap[password] === 'spaceClue') {
+            var video = document.getElementById('spaceVideo');
+            video.play();
+        }
+    } else {
+        document.getElementById('errorMessage').style.display = 'block';
+    }
+});
+
+            </script>
+        </div>
+    </body>
+    <style>
+        body {
+            background: url(Images/space.webp);
+            background-repeat: none;
+        overflow-x: hidden;
+        box-sizing: border-box;
+        color: white;
+        }
+        .logo {
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            top: -40px;
+            left: -10px;
+        }
+       
+        h1 {
+            font-family: "Press Start 2P", system-ui;
+            font-weight: 400;
+            font-size: 22px;
+            color: white;
+            margin: auto;
+            margin-top: 200px;
+            text-align: center;
+        }
+        h2 {
+            font-family: "Coda", system-ui;
+            font-weight: 500;
+            text-align: center;
+            font-size: 22px;
+            color: white;
+            margin-top: 200px;
+        }
+        .stone {
+            position: absolute;
+            top: 200px;
+            left: 130px;
+            width: 120px;
+            animation: glow 2s infinite alternate ease-in-out;
+            filter: drop-shadow(0 0 20px rgba(255, 140, 0, 0.7));
+            z-index: -1;
+        }
+        @keyframes glow {
+    0% {
+        filter: drop-shadow(0 0 10px rgba(255, 140, 0, 0.7)) brightness(1);
+    }
+    100% {
+        filter: drop-shadow(0 0 30px rgba(255, 140, 0, 0.7)) brightness(1.3);
+    }
+}
+    .cluecont {
+        margin-left: 10px;
+        z-index: 100;
+    }
+    h3 {
+        font-family: "Press Start 2P", system-ui;
+        font-weight: 400;
+        color: white;
+        margin-top: 50px;
+    }
+    input {
+        padding: 10px;
+        border-radius: 5px;
+        font-family: "Coda", system-ui;
+        font-size: 16px;
+        background: white;
+    }
+    button {
+        margin-left: 30px;
+        padding: 15px;
+        width: 100px;
+        border-radius: 10px;
+        font-family: "Press Start 2P", system-ui;
+        color: white;
+        display: inline-block;
+        border: 1px solid #ffffff;
+        box-shadow:  0 0 5px #ffffff,  0 0 5px #ffffff inset;
+        background: transparent;
+        font-size: 12px;
+        cursor: pointer;
+    }
+    .clue,.error {
+        font-family: "Coda", system-ui;
+        font-size: 18px;
+        font-weight: 400;
+        font-style: italic;
+        text-align: center;
+        margin-top: 50px;
+        padding-bottom: 20px;
+    }
+    .error{
+        color: red;
+        font-style: normal;
+    }
+    #spaceVideo {
+        width: 250px;
+        height: 250px;
+    }
+    .stone-container {
+            margin-top: -50px !important;
+        }
+    </style>
+</html>
